@@ -1,22 +1,19 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { AppQueryProvider } from "@/components/query-provider";
-import { AppShell } from "@/components/app-shell";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { RootProvider } from "@/components/root-provider";
+import { Sidebar } from "@/components/sidebar";
 
 export const metadata: Metadata = {
   title: "Aplicativo de Controle Financeiro",
   description: "Interface do aplicativo de controle financeiro pessoal",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -25,14 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full bg-neutral-50 text-neutral-950">
-        <AppQueryProvider>
-          <AppShell>{children}</AppShell>
-        </AppQueryProvider>
+    <html lang="pt-BR" className="h-full antialiased">
+      <body className="min-h-full bg-background text-foreground">
+        <RootProvider>
+          <Sidebar>{children}</Sidebar>
+        </RootProvider>
       </body>
     </html>
   );

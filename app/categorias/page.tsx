@@ -1,5 +1,10 @@
-import { CategoriesScreen } from "@/components/categories-screen";
+import { CategoriasScreen } from "@/app/categorias/_components/categorias-screen";
+import { Page } from "@/components/page";
 
-export default function Page() {
-  return <CategoriesScreen />;
+export default function PageComponent() {
+  return (
+    <Page>
+      <CategoriasScreen />
+    </Page>
+  );
 }

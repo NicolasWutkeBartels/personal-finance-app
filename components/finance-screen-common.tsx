@@ -1,9 +1,21 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { getCategoryVisual, type Categoria } from "@/lib/finance-demo";
+import { getCategoryVisual } from "@/lib/bd/utilidades";
+import type { Categoria } from "@/lib/models/categoria";
 
-export const EMOJI_OPTIONS = ["🍽️", "🚗", "🏠", "🏥", "🎮", "📚", "👕", "✈️", "🎬", "💰"];
+export const EMOJI_OPTIONS = [
+  "🍽️",
+  "🚗",
+  "🏠",
+  "🏥",
+  "🎮",
+  "📚",
+  "👕",
+  "✈️",
+  "🎬",
+  "💰",
+];
 export const COLOR_OPTIONS = [
   "#ef4444",
   "#f59e0b",
@@ -16,26 +28,6 @@ export const COLOR_OPTIONS = [
   "#ec4899",
   "#6b7280",
 ];
-
-export function SectionHeader({
-  title,
-  description,
-  action,
-}: {
-  title: string;
-  description: string;
-  action?: React.ReactNode;
-}) {
-  return (
-    <div className="mb-8 flex items-center justify-between gap-4">
-      <div>
-        <h2 className="text-3xl font-semibold text-neutral-900">{title}</h2>
-        <p className="mt-1 text-neutral-500">{description}</p>
-      </div>
-      {action}
-    </div>
-  );
-}
 
 export function CategorySwatch({
   category,

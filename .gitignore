@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+*.jks
+src-tauri/gen/android/keystore.properties
 
 # debug
 npm-debug.log*
