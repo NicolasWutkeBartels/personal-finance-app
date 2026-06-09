@@ -16,6 +16,7 @@ import {
   useRecorrencias,
 } from "@/lib/hooks/useRecorrencias";
 import { Form } from "@/components/form";
+import { toast } from "sonner";
 import {
   TextField,
   CurrencyField,
@@ -99,8 +100,12 @@ export default function RecurringForm({ value, onCancel }: RecurringFormProps) {
       };
       updateMutation.mutate(updatePayload, {
         onSuccess: () => {
+          toast.success("Recorrência atualizada com sucesso!");
           methods.reset();
           onCancel?.();
+        },
+        onError: () => {
+          toast.error("Erro ao atualizar recorrência.");
         },
       });
       return;
@@ -108,8 +113,12 @@ export default function RecurringForm({ value, onCancel }: RecurringFormProps) {
 
     createMutation.mutate(payload, {
       onSuccess: () => {
+        toast.success("Recorrência criada com sucesso!");
         methods.reset();
         onCancel?.();
+      },
+      onError: () => {
+        toast.error("Erro ao criar recorrência.");
       },
     });
   });

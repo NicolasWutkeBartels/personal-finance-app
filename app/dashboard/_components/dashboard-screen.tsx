@@ -4,11 +4,9 @@ import { Calendar, TrendingDown, TrendingUp, Wallet } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import {
-  formatCurrency,
-  formatShortDate,
-  getCategoryVisual,
-} from "@/lib/bd/utilidades";
+import { formatCurrency } from "@/utils/finance-utils";
+import { formatShortDate } from "@/utils/date-utils";
+import { getCategoryVisual } from "@/utils/category-utils";
 import { useCategorias } from "@/lib/hooks/useCategorias";
 import { useDespesas } from "@/lib/hooks/useDespesas";
 import { CategorySwatch } from "@/components/finance-screen-common";

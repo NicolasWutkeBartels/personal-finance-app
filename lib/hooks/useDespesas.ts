@@ -1,21 +1,22 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 import type { DespesaAtualizar, DespesaCriar } from "@/lib/models/despesa";
-import { despesaService } from "@/lib/services/despesa";
-import { queryClient } from "@/utils/queryClient";
+import { DespesaService } from "@/lib/services/despesa";
 
 export function useDespesas() {
   return useQuery({
     queryKey: ["despesa"],
-    queryFn: () => despesaService.listAll(),
+    queryFn: () => DespesaService.listAll(),
   });
 }
 
 export function useCriarDespesa() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: DespesaCriar) => despesaService.insert(input),
+    mutationFn: (input: DespesaCriar) => DespesaService.insert(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["despesa"] });
     },
@@ -23,8 +24,9 @@ export function useCriarDespesa() {
 }
 
 export function useAtualizarDespesa() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: DespesaAtualizar) => despesaService.update(input),
+    mutationFn: (input: DespesaAtualizar) => DespesaService.update(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["despesa"] });
     },
@@ -32,10 +34,15 @@ export function useAtualizarDespesa() {
 }
 
 export function useExcluirDespesa() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (desUuid: string) => despesaService.delete(desUuid),
+    mutationFn: (desUuid: string) => DespesaService.delete(desUuid),
     onSuccess: async () => {
+      toast.success("Despesa excluída com sucesso!");
       await queryClient.invalidateQueries({ queryKey: ["despesa"] });
+    },
+    onError: () => {
+      toast.error("Erro ao excluir despesa.");
     },
   });
 }

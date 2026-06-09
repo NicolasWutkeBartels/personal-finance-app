@@ -2,11 +2,11 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { despesaTipoService } from "@/lib/services/despesaTipo";
+import { DespesaTipoService } from "@/lib/services/despesaTipo";
 
 export function useDespesaTipos() {
   return useQuery({
     queryKey: ["despesaTipo"],
-    queryFn: () => despesaTipoService.listAll(),
+    queryFn: () => DespesaTipoService.listAll(),
   });
 }

@@ -3,36 +3,34 @@ import {
   type UsuarioAtualizar,
 } from "@/lib/models/usuario";
 import { UsuarioRepository } from "@/lib/repositories/usuario";
+import { assertRequired } from "@/utils/validation-utils";
 
-function assertRequired(value: string, label: string) {
-  if (!value.trim()) {
-    throw new Error(`${label} é obrigatório.`);
+async function findAdmin() {
+  const usuario = await UsuarioRepository.findAdmin(ADMIN_USUARIO_UUID);
+
+  if (!usuario) {
+    throw new Error("Usuário administrador não encontrado.");
   }
+  return usuario;
 }
 
-export const usuarioService = {
-  async findAdmin() {
-    const usuario = await UsuarioRepository.findAdmin(ADMIN_USUARIO_UUID);
+async function updateAdmin(input: UsuarioAtualizar) {
+  assertRequired(input.usu_nome, "Nome");
 
-    if (!usuario) {
-      throw new Error("Usuário administrador não encontrado.");
-    }
-    return usuario;
-  },
+  const usuario = await UsuarioRepository.updateAdmin(ADMIN_USUARIO_UUID, {
+    usu_nome: input.usu_nome.trim(),
+    usu_email: input.usu_email?.trim() || null,
+    usu_telefone: input.usu_telefone?.trim() || null,
+  });
 
-  async updateAdmin(input: UsuarioAtualizar) {
-    assertRequired(input.usu_nome, "Nome");
+  if (!usuario) {
+    throw new Error("Usuário administrador não encontrado.");
+  }
 
-    const usuario = await UsuarioRepository.updateAdmin(ADMIN_USUARIO_UUID, {
-      usu_nome: input.usu_nome.trim(),
-      usu_email: input.usu_email?.trim() || null,
-      usu_telefone: input.usu_telefone?.trim() || null,
-    });
+  return "";
+}
 
-    if (!usuario) {
-      throw new Error("Usuário administrador não encontrado.");
-    }
-
-    return "";
-  },
+export const UsuarioService = {
+  findAdmin,
+  updateAdmin,
 };

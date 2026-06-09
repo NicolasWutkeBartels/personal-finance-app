@@ -1,7 +1,9 @@
 import { DespesaTipoRepository } from "@/lib/repositories/despesaTipo";
 
-export const despesaTipoService = {
-  async listAll() {
-    return DespesaTipoRepository.listAll();
-  },
+async function listAll() {
+  return DespesaTipoRepository.listAll();
+}
+
+export const DespesaTipoService = {
+  listAll,
 };

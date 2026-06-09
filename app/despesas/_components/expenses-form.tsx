@@ -13,6 +13,7 @@ import {
   useDespesas,
 } from "@/lib/hooks/useDespesas";
 import { Form } from "@/components/form";
+import { toast } from "sonner";
 import {
   TextField,
   CurrencyField,
@@ -97,8 +98,12 @@ export default function ExpensesForm({ value, onCancel }: ExpensesFormProps) {
       };
       updateMutation.mutate(updatePayload, {
         onSuccess: () => {
+          toast.success("Despesa atualizada com sucesso!");
           methods.reset();
           onCancel?.();
+        },
+        onError: () => {
+          toast.error("Erro ao atualizar despesa.");
         },
       });
       return;
@@ -106,8 +111,12 @@ export default function ExpensesForm({ value, onCancel }: ExpensesFormProps) {
 
     createMutation.mutate(payload, {
       onSuccess: () => {
+        toast.success("Despesa criada com sucesso!");
         methods.reset();
         onCancel?.();
+      },
+      onError: () => {
+        toast.error("Erro ao criar despesa.");
       },
     });
   });

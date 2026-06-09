@@ -9,6 +9,7 @@ import {
 } from "@/lib/hooks/useCategorias";
 import { Form } from "@/components/form";
 import { TextField } from "@/components/fields";
+import { toast } from "sonner";
 
 type CategoriasFormProps = {
   value?: string;
@@ -55,8 +56,12 @@ export default function CategoriasForm({ value, onCancel }: CategoriasFormProps)
       };
       updateMutation.mutate(payload, {
         onSuccess: () => {
+          toast.success("Categoria atualizada com sucesso!");
           methods.reset();
           onCancel?.(); // Fecha o modal após salvar
+        },
+        onError: () => {
+          toast.error("Erro ao atualizar categoria.");
         },
       });
       return;
@@ -68,8 +73,12 @@ export default function CategoriasForm({ value, onCancel }: CategoriasFormProps)
       },
       {
         onSuccess: () => {
+          toast.success("Categoria criada com sucesso!");
           methods.reset();
           onCancel?.(); // Fecha o modal após salvar
+        },
+        onError: () => {
+          toast.error("Erro ao criar categoria.");
         },
       },
     );

@@ -5,10 +5,11 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useUsuarioAdmin } from "@/lib/hooks/useUsuario";
 import type { UsuarioAtualizar } from "@/lib/models/usuario";
-import { usuarioService } from "@/lib/services/usuario";
+import { UsuarioService } from "@/lib/services/usuario";
 import { Form } from "./form";
 import { TextField } from "./fields";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 type ProfileFormProps = {
   onCancel?: () => void;
@@ -18,10 +19,14 @@ export default function ProfileForm({ onCancel }: ProfileFormProps) {
   const userQuery = useUsuarioAdmin();
 
   const { mutate, isPending } = useMutation<string, Error, UsuarioAtualizar>({
-    mutationFn: (data) => usuarioService.updateAdmin(data),
+    mutationFn: (data) => UsuarioService.updateAdmin(data),
     onSuccess: async () => {
+      toast.success("Perfil atualizado com sucesso!");
       await userQuery.refetch();
       onCancel?.();
+    },
+    onError: () => {
+      toast.error("Erro ao atualizar perfil.");
     },
   });
 

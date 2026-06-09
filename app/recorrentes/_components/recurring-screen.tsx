@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { CategorySwatch } from "@/components/finance-screen-common";
-import { formatCurrency } from "@/lib/bd/utilidades";
+import { formatCurrency } from "@/utils/finance-utils";
 import { useCategorias } from "@/lib/hooks/useCategorias";
 import { useDespesaTipos } from "@/lib/hooks/useDespesaTipos";
 import {

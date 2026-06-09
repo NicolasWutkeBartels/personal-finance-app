@@ -1,24 +1,25 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 import type {
   CategoriaAtualizar,
   CategoriaCriar,
 } from "@/lib/models/categoria";
-import { categoriaService } from "@/lib/services/categoria";
-import { queryClient } from "@/utils/queryClient";
+import { CategoriaService } from "@/lib/services/categoria";
 
 export function useCategorias() {
   return useQuery({
     queryKey: ["categoria"],
-    queryFn: () => categoriaService.listAll(),
+    queryFn: () => CategoriaService.listAll(),
   });
 }
 
 export function useCriarCategoria() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: CategoriaCriar) => categoriaService.insert(input),
+    mutationFn: (input: CategoriaCriar) => CategoriaService.insert(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["categoria"] });
     },
@@ -26,8 +27,9 @@ export function useCriarCategoria() {
 }
 
 export function useAtualizarCategoria() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (input: CategoriaAtualizar) => categoriaService.update(input),
+    mutationFn: (input: CategoriaAtualizar) => CategoriaService.update(input),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["categoria"] });
     },
@@ -35,10 +37,15 @@ export function useAtualizarCategoria() {
 }
 
 export function useExcluirCategoria() {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (catUuid: string) => categoriaService.delete(catUuid),
+    mutationFn: (catUuid: string) => CategoriaService.delete(catUuid),
     onSuccess: async () => {
+      toast.success("Categoria excluída com sucesso!");
       await queryClient.invalidateQueries({ queryKey: ["categoria"] });
+    },
+    onError: () => {
+      toast.error("Erro ao excluir categoria.");
     },
   });
 }

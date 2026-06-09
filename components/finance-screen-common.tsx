@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { getCategoryVisual } from "@/lib/bd/utilidades";
+import { getCategoryVisual } from "@/utils/category-utils";
 import type { Categoria } from "@/lib/models/categoria";
 
 export const EMOJI_OPTIONS = [

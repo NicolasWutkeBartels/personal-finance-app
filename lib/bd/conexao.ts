@@ -30,7 +30,8 @@ export async function selectAll<T>(sql: string, params: unknown[] = []) {
 }
 
 export async function selectOne<T>(sql: string, params: unknown[] = []) {
-  const rows = await selectAll<T>(sql, params);
+  const query = sql.trim() + " LIMIT 1";
+  const rows = await selectAll<T>(query, params);
   return rows[0] ?? null;
 }
 

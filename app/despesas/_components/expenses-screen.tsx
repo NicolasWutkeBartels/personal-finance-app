@@ -14,11 +14,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CategorySwatch } from "@/components/finance-screen-common";
-import {
-  formatCurrency,
-  formatLongDate,
-  getMonthOptions,
-} from "@/lib/bd/utilidades";
+import { formatCurrency } from "@/utils/finance-utils";
+import { formatLongDate, getMonthOptions } from "@/utils/date-utils";
 import { useCategorias } from "@/lib/hooks/useCategorias";
 import { useDespesaTipos } from "@/lib/hooks/useDespesaTipos";
 import {

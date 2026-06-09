@@ -38,3 +38,32 @@ export const formatDisplayDate = (
   if (!date) return "";
   return format(date, "dd/MM/yyyy", { locale: ptBR });
 };
+
+export function formatShortDate(dateStr: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "short",
+  }).format(new Date(`${dateStr}T00:00:00`));
+}
+
+export function formatLongDate(dateStr: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(`${dateStr}T00:00:00`));
+}
+
+export function getMonthOptions(amount = 12) {
+  return Array.from({ length: amount }, (_, index) => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - index);
+    return {
+      value: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`,
+      label: new Intl.DateTimeFormat("pt-BR", {
+        month: "long",
+        year: "numeric",
+      }).format(date),
+    };
+  });
+}
