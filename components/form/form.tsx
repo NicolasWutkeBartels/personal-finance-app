@@ -70,10 +70,19 @@ function FormFooter({
       )}
       {...props}
     >
-      <Button type="button" variant="outline" onClick={onCancel}>
+      <Button
+        type="button"
+        variant="outline"
+        onClick={onCancel}
+        className="w-full"
+      >
         {cancelLabel}
       </Button>
-      <Button type="submit" disabled={submitDisabled || isSubmitting}>
+      <Button
+        type="submit"
+        disabled={submitDisabled || isSubmitting}
+        className="w-full"
+      >
         {submitLabel}
       </Button>
     </div>

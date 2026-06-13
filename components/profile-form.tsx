@@ -8,7 +8,6 @@ import type { UsuarioAtualizar } from "@/lib/models/usuario";
 import { UsuarioService } from "@/lib/services/usuario";
 import { Form } from "./form";
 import { TextField } from "./fields";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 type ProfileFormProps = {
@@ -48,20 +47,7 @@ export default function ProfileForm({ onCancel }: ProfileFormProps) {
       <TextField name="usu_nome" label="Nome" isRequired />
       <TextField name="usu_email" label="Email" type="email" isRequired />
       <TextField name="usu_telefone" label="Telefone" />
-
-      <div className="flex gap-2 pt-2">
-        <Button
-          type="button"
-          variant="outline"
-          className="flex-1"
-          onClick={onCancel}
-        >
-          Cancelar
-        </Button>
-        <Button type="submit" className="flex-1" disabled={isPending}>
-          Salvar
-        </Button>
-      </div>
+      <Form.Footer isSubmitting={isPending} onCancel={onCancel} />
     </Form.Root>
   );
 }

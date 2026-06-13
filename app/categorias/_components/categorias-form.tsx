@@ -20,7 +20,10 @@ type CategoriasFormValues = {
   cat_descricao: string;
 };
 
-export default function CategoriasForm({ value, onCancel }: CategoriasFormProps) {
+export default function CategoriasForm({
+  value,
+  onCancel,
+}: CategoriasFormProps) {
   const createMutation = useCriarCategoria();
   const updateMutation = useAtualizarCategoria();
   const { data: categories } = useCategorias();
@@ -95,10 +98,7 @@ export default function CategoriasForm({ value, onCancel }: CategoriasFormProps)
         isRequired
       />
 
-      <Form.Footer
-        isSubmitting={isSubmitting}
-        onCancel={onCancel}
-      />
+      <Form.Footer isSubmitting={isSubmitting} onCancel={onCancel} />
     </Form.Root>
   );
 }
