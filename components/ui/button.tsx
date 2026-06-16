@@ -42,6 +42,9 @@ const buttonVariants = cva(
   },
 );
 
+const MotionButton = motion.button;
+const MotionSlot = motion(Slot.Root);
+
 function Button({
   className,
   variant = "default",
@@ -55,25 +58,21 @@ function Button({
     asChild?: boolean;
     isLoading?: boolean;
   }) {
-  const Comp = asChild ? Slot.Root : "button";
+  const Comp = (asChild ? MotionSlot : MotionButton) as any;
 
   return (
-    <motion.button
+    <Comp
       whileHover={{ scale: 1.05 }}
-      className={cn("place-items-center", className)}
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      disabled={disabled || isLoading}
+      {...props}
     >
-      <Comp
-        data-slot="button"
-        data-variant={variant}
-        data-size={size}
-        className={cn(buttonVariants({ variant, size, className }))}
-        disabled={disabled || isLoading}
-        {...props}
-      >
-        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
-        {props.children}
-      </Comp>
-    </motion.button>
+      {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+      {props.children}
+    </Comp>
   );
 }
 

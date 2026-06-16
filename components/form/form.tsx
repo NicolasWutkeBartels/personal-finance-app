@@ -74,14 +74,14 @@ function FormFooter({
         type="button"
         variant="outline"
         onClick={onCancel}
-        className="w-full"
+        className="flex-1"
       >
         {cancelLabel}
       </Button>
       <Button
         type="submit"
         disabled={submitDisabled || isSubmitting}
-        className="w-full"
+        className="flex-1"
       >
         {submitLabel}
       </Button>

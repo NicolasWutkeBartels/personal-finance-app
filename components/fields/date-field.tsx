@@ -6,7 +6,11 @@ import { ptBR } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import {
@@ -36,12 +40,13 @@ export function DateField({
   placeholder = "Selecione uma data",
   disabledDays,
 }: DateFieldProps) {
+  const [open, setOpen] = React.useState(false);
   const { control } = useFormContext();
   const fieldId = id || name;
 
   if (!control) {
     throw new Error(
-      "DateField deve ser utilizado dentro de um FormProvider (Form.Root)."
+      "DateField deve ser utilizado dentro de um FormProvider (Form.Root).",
     );
   }
 
@@ -67,7 +72,7 @@ export function DateField({
               </Label>
             )}
 
-            <Popover>
+            <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
                   id={fieldId}
@@ -75,15 +80,16 @@ export function DateField({
                   className={cn(
                     "w-full justify-between text-left font-normal h-8 rounded-lg px-2.5 py-1 text-sm border border-input bg-transparent",
                     !field.value && "text-muted-foreground",
-                    fieldState.invalid && "border-destructive focus-visible:ring-destructive/20"
+                    fieldState.invalid &&
+                      "border-destructive focus-visible:ring-destructive/20",
                   )}
                   aria-invalid={fieldState.invalid}
                   aria-describedby={
                     fieldState.error
                       ? `${fieldId}-error`
                       : description
-                      ? `${fieldId}-description`
-                      : undefined
+                        ? `${fieldId}-description`
+                        : undefined
                   }
                 >
                   {field.value ? (
@@ -100,6 +106,7 @@ export function DateField({
                   selected={selectedDate}
                   onSelect={(date) => {
                     field.onChange(date ? formatDateToLocalStr(date) : null);
+                    setOpen(false);
                   }}
                   disabled={disabledDays}
                   locale={ptBR}
