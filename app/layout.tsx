@@ -17,6 +17,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
+import { LaunchProvider } from "@/components/launch-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,7 +28,9 @@ export default function RootLayout({
     <html lang="pt-BR" className="h-full antialiased" suppressHydrationWarning>
       <body className="min-h-full bg-background text-foreground">
         <RootProvider>
-          <Sidebar>{children}</Sidebar>
+          <LaunchProvider>
+            <Sidebar>{children}</Sidebar>
+          </LaunchProvider>
           <Toaster />
         </RootProvider>
       </body>

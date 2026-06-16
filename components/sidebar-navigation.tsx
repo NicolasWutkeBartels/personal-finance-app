@@ -10,6 +10,7 @@ import {
   SidebarMenuButton,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { motion } from "motion/react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
@@ -29,7 +30,7 @@ export function SidebarNavigation() {
   };
 
   return (
-    <SidebarMenu>
+    <SidebarMenu className="gap-1.5">
       {navigation.map((item) => {
         const Icon = item.icon;
         const active =
@@ -38,20 +39,30 @@ export function SidebarNavigation() {
             : pathname.includes(item.href);
 
         return (
-          <SidebarMenuItem key={item.name}>
+          <SidebarMenuItem key={item.name} className="relative">
             <SidebarMenuButton
               asChild
               isActive={active}
               className={cn(
-                "rounded-xl px-3 py-2.5 h-10 font-medium transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-800",
+                "relative px-4 py-2.5 h-11 font-medium transition-all duration-200 cursor-pointer select-none",
                 active
-                  ? "bg-neutral-900 text-white hover:bg-neutral-900 hover:text-white data-[active=true]:bg-neutral-900 data-[active=true]:text-white dark:bg-neutral-50 dark:text-neutral-900 dark:data-[active=true]:bg-neutral-50 dark:data-[active=true]:text-neutral-900"
-                  : "text-neutral-700 dark:text-neutral-300"
+                  ? "mr-[-8px] pr-5 rounded-l-xl rounded-r-none bg-background text-foreground border-y border-l border-border/60 shadow-none hover:bg-background hover:text-foreground active-nav-notch z-10"
+                  : "rounded-xl text-muted-foreground hover:text-foreground hover:bg-neutral-100/60 dark:hover:bg-neutral-900/60"
               )}
             >
-              <Link href={item.href} onClick={handleLinkClick}>
-                <Icon className="h-5 w-5" />
-                <span>{item.name}</span>
+              <Link href={item.href} onClick={handleLinkClick} className="flex items-center gap-3">
+                <Icon className={cn(
+                  "h-[18px] w-[18px] transition-transform duration-200 group-hover:scale-105",
+                  active ? "text-primary" : "text-muted-foreground/80"
+                )} />
+                <span className="text-sm font-semibold tracking-tight">{item.name}</span>
+                {active && (
+                  <motion.div
+                    layoutId="sidebar-active-dot"
+                    className="absolute left-1.5 top-[18px] w-1 h-2 rounded-full bg-primary"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

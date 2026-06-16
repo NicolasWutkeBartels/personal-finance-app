@@ -41,12 +41,15 @@ export function CategorySwatch({
   return (
     <div
       className={cn(
-        "flex h-12 w-12 items-center justify-center rounded-lg text-2xl",
+        "flex h-10 w-10 shrink-0 items-center justify-center text-lg geom-chamfer border border-solid shadow-xs select-none transition-transform duration-200",
         className,
       )}
-      style={{ backgroundColor: `${visual.color}20` }}
+      style={{ 
+        backgroundColor: `${visual.color}15`, 
+        borderColor: `${visual.color}35` 
+      }}
     >
-      {visual.icon}
+      <span className="leading-none">{visual.icon}</span>
     </div>
   );
 }

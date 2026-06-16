@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -68,81 +69,88 @@
 }
 
 :root {
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "Cascadia Code", "Roboto Mono",
     Consolas, monospace;
   
   /* Light Theme - Premium Slate Undertones */
   --background: oklch(0.985 0.005 220);
-  --foreground: oklch(0.16 0.015 220);
+  --foreground: oklch(0.12 0.015 220);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.16 0.015 220);
+  --card-foreground: oklch(0.12 0.015 220);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.16 0.015 220);
-  --primary: oklch(0.25 0.03 240);
+  --popover-foreground: oklch(0.12 0.015 220);
+  --primary: oklch(0.22 0.025 240);
   --primary-foreground: oklch(0.985 0.005 240);
-  --secondary: oklch(0.96 0.01 220);
-  --secondary-foreground: oklch(0.25 0.03 240);
-  --muted: oklch(0.96 0.01 220);
-  --muted-foreground: oklch(0.5 0.02 220);
-  --accent: oklch(0.96 0.01 220);
-  --accent-foreground: oklch(0.25 0.03 240);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.01 220);
-  --input: oklch(0.92 0.01 220);
-  --ring: oklch(0.7 0.03 220);
+  --secondary: oklch(0.96 0.008 220);
+  --secondary-foreground: oklch(0.22 0.025 240);
+  --muted: oklch(0.96 0.008 220);
+  --muted-foreground: oklch(0.48 0.015 220);
+  --accent: oklch(0.96 0.008 220);
+  --accent-foreground: oklch(0.22 0.025 240);
+  --destructive: oklch(0.58 0.18 25);
+  --border: oklch(0.92 0.008 220);
+  --input: oklch(0.92 0.008 220);
+  --ring: oklch(0.65 0.025 220);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem; /* slightly larger for premium cards, but keep layout tidy */
   
-  --sidebar: oklch(0.99 0.005 220);
-  --sidebar-foreground: oklch(0.2 0.015 220);
-  --sidebar-primary: oklch(0.25 0.03 240);
-  --sidebar-primary-foreground: oklch(0.99 0.005 220);
-  --sidebar-accent: oklch(0.96 0.01 220);
-  --sidebar-accent-foreground: oklch(0.25 0.03 240);
-  --sidebar-border: oklch(0.92 0.01 220);
-  --sidebar-ring: oklch(0.7 0.03 220);
+  --sidebar: oklch(0.99 0.003 220);
+  --sidebar-foreground: oklch(0.18 0.015 220);
+  --sidebar-primary: oklch(0.22 0.025 240);
+  --sidebar-primary-foreground: oklch(0.99 0.003 220);
+  --sidebar-accent: oklch(0.95 0.008 220);
+  --sidebar-accent-foreground: oklch(0.22 0.025 240);
+  --sidebar-border: oklch(0.92 0.008 220);
+  --sidebar-ring: oklch(0.65 0.025 220);
+
+  /* Professional gains/losses variables */
+  --gain: oklch(0.62 0.15 145);
+  --loss: oklch(0.58 0.17 25);
 }
 
 .dark {
-  /* Dark Theme - Deep Premium Slate-Blue Palette */
-  --background: oklch(0.14 0.015 220);
-  --foreground: oklch(0.97 0.008 220);
-  --card: oklch(0.17 0.015 220);
-  --card-foreground: oklch(0.97 0.008 220);
-  --popover: oklch(0.17 0.015 220);
-  --popover-foreground: oklch(0.97 0.008 220);
-  --primary: oklch(0.92 0.01 220);
-  --primary-foreground: oklch(0.15 0.015 220);
-  --secondary: oklch(0.22 0.015 220);
-  --secondary-foreground: oklch(0.97 0.008 220);
-  --muted: oklch(0.22 0.015 220);
-  --muted-foreground: oklch(0.65 0.015 220);
-  --accent: oklch(0.22 0.015 220);
-  --accent-foreground: oklch(0.97 0.008 220);
-  --destructive: oklch(0.65 0.18 25);
-  --border: oklch(0.24 0.015 220);
-  --input: oklch(0.24 0.015 220);
-  --ring: oklch(0.5 0.03 220);
+  /* Dark Theme - Warm Elevated Slate/Charcoal Palette */
+  --background: oklch(0.16 0.011 224); /* warmer dark slate */
+  --foreground: oklch(0.96 0.006 224);
+  --card: oklch(0.20 0.011 224); /* layered dark slate card */
+  --card-foreground: oklch(0.96 0.006 224);
+  --popover: oklch(0.20 0.011 224);
+  --popover-foreground: oklch(0.96 0.006 224);
+  --primary: oklch(0.92 0.008 224);
+  --primary-foreground: oklch(0.16 0.011 224);
+  --secondary: oklch(0.23 0.011 224);
+  --secondary-foreground: oklch(0.96 0.006 224);
+  --muted: oklch(0.23 0.011 224);
+  --muted-foreground: oklch(0.62 0.012 224);
+  --accent: oklch(0.23 0.011 224);
+  --accent-foreground: oklch(0.96 0.006 224);
+  --destructive: oklch(0.62 0.16 25);
+  --border: oklch(0.26 0.011 224); /* layered dark border */
+  --input: oklch(0.26 0.011 224);
+  --ring: oklch(0.48 0.02 224);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   
-  --sidebar: oklch(0.15 0.015 220);
-  --sidebar-foreground: oklch(0.97 0.008 220);
-  --sidebar-primary: oklch(0.92 0.01 220);
-  --sidebar-primary-foreground: oklch(0.15 0.015 220);
-  --sidebar-accent: oklch(0.22 0.015 220);
-  --sidebar-accent-foreground: oklch(0.97 0.008 220);
-  --sidebar-border: oklch(0.24 0.015 220);
-  --sidebar-ring: oklch(0.5 0.03 220);
+  --sidebar: oklch(0.17 0.011 224); /* slightly deeper than content background */
+  --sidebar-foreground: oklch(0.96 0.006 224);
+  --sidebar-primary: oklch(0.92 0.008 224);
+  --sidebar-primary-foreground: oklch(0.16 0.011 224);
+  --sidebar-accent: oklch(0.23 0.011 224);
+  --sidebar-accent-foreground: oklch(0.96 0.006 224);
+  --sidebar-border: oklch(0.24 0.011 224);
+  --sidebar-ring: oklch(0.48 0.02 224);
+
+  /* Professional gains/losses variables */
+  --gain: oklch(0.68 0.14 145);
+  --loss: oklch(0.62 0.16 25);
 }
 
 @layer base {
@@ -150,9 +158,64 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply min-h-screen bg-background text-foreground;
+    @apply min-h-screen bg-background text-foreground antialiased;
   }
   html {
     @apply font-sans;
   }
+}
+
+/* Custom Geometric and Layout utilities */
+
+/* Faint technical financial grid overlay */
+.bg-grid-pattern {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, oklch(from var(--border) l c h / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(from var(--border) l c h / 0.12) 1px, transparent 1px);
+}
+
+/* Custom card chamfer cutout (top-right cutout) */
+.geom-chamfer {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+.geom-chamfer-reverse {
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+}
+
+/* Inward curve/notch styling for active sidebar items */
+.active-nav-notch {
+  position: relative;
+}
+.active-nav-notch::before,
+.active-nav-notch::after {
+  content: '';
+  position: absolute;
+  right: 0px;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+.active-nav-notch::before {
+  top: -12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 4px 4px 0 0 var(--background);
+}
+.active-nav-notch::after {
+  bottom: -12px;
+  border-top-right-radius: 12px;
+  box-shadow: 4px -4px 0 0 var(--background);
+}
+
+/* Custom Segmented progress tracks */
+.segmented-progress-segment {
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 100%, 0 100%);
+}
+
+/* Custom primary action button geometric chamfer style */
+.geom-button {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
 }
